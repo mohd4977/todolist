@@ -1,0 +1,45 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Todo List
+{% endblock %}
+
+{% block content %}
+<h1>Todo List</h1>
+
+{% if messages %}
+     {% for message in messages %}
+         <div class="text-center alert alert-{{ message.tags }}">
+             {{ message|safe }}
+         </div>
+     {% endfor %}
+ {% endif %}
+
+<form method="GET">
+    <select name="task_status">
+        {% for item in task_status  %}
+            <option value="{{ item.0 }}">{{ item.1 }}</option>
+        {% endfor %}
+    </select>
+    <input class="button" type="submit" value='Search'>
+</form>
+<a href="{% url 'task_create' %}">Add Task</a>
+<table>
+    <tr>
+        <th>Item</th>
+        <th>View</th>
+        <th>Update</th>
+        <th></th>
+    </tr>
+    {% for task in tasks %}
+    <tr>
+        <td>{{ task.name }}</td>
+        <td><a href="{% url 'task' task.id %}">View</a></td>
+        <td><a href="{% url 'task_update' task.id %}">Update</a></td>
+        <td><a href="{% url 'task_delete' task.id %}">Delete</a></td>
+    </tr>
+    {% empty %}
+    <h3>No item in List</h3>
+    {% endfor %}
+</table>
+{% endblock %}

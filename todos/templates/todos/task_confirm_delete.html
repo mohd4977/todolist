@@ -1,0 +1,15 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Comfirmation
+{% endblock %}
+
+{% block content %}
+<div></div>
+    <form method="POST">
+        {% csrf_token %}
+        <p>Are your sure you want to delete this task?</p>
+        <input class="button" type="submit" value="Delete" />
+    </form>
+</div>
+{% endblock %}

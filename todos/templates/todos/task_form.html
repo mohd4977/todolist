@@ -1,0 +1,18 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Todo Form
+{% endblock %}
+
+{% block content %}
+<div class="header-bar">
+    <a href="{% url 'tasks' %}">Back</a>
+</div>
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input class="button" type="submit" value="Submit">
+    </form>
+</div>
+{% endblock %}
